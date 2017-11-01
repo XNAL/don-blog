@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+body {
+  /* color: #33373d;
+  background-color: #fff; */
+  height: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.scrollX-hidden {
+  overflow-x: hidden;
+}
+
+.scrollY-overlay {
+  overflow-y: hidden !important;
+}
+
+.scrollY-overlay:hover {
+  overflow-y: auto;
+  overflow-y: overlay !important;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
