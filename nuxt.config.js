@@ -11,6 +11,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'http://at.alicdn.com/t/font_461741_hcbve0yai4ibe29.js' }
     ]
   },
   // Global CSS

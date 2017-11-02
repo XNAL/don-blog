@@ -2,6 +2,7 @@
     <header>
       <section class="header-container container">
 				<div class="logo-title">
+          <img class="logo" src="/logo.png" alt="logo">
 					<h2>DON</h2>
           <span class="desc">Talk is cheap. Show me the code.</span>
 				</div>
@@ -25,17 +26,22 @@ header {
 
   .header-container {
     color: #2d8cf0;
-
+    .logo {
+      float: left;
+      margin: 10px 15px 0;
+      width: 40px;
+      height: 40px;
+    }
     h2 {
       float: left;
       font-size: 32px;
       text-align: left;
       font-weight: 500;
-      width: 200px;
+      width: 160px;
     }
     .desc {
       float: left;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
