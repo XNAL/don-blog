@@ -11,37 +11,28 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Header from '~/components/Header.vue';
 import Menu from '~/components/Menu.vue';
 import Post from '~/components/Post.vue';
 
 export default {
+  asyncData () {
+    return axios.get(`/post/getPostList?page=1`).then(res => {
+      console.log('res', res.data.data);
+      return { postList: res.data.data };
+    });
+
+    // if (res.data.success === 1) {
+    //   return { postList: res.data.data };
+    // } else {
+    //   return { postList: [] };
+    // }
+  },
   components: {
     'don-header': Header,
     'don-menu': Menu,
     'post-list': Post
-  },
-  data () {
-    return {
-      postList: [
-        {
-          id: 1,
-          title: '第一篇文章标题',
-          content: '第一篇文章内容是123.',
-          catId: 1,
-          catName: 'JavaScript',
-          time: '2017-11-02'
-        },
-        {
-          id: 2,
-          title: '第二篇文章标题',
-          content: '第二篇文章内容是123.',
-          catId: 2,
-          catName: '项目实战',
-          time: '2017-08-15'
-        }
-      ]
-    };
   }
 };
 </script>

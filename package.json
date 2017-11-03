@@ -13,12 +13,17 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "axios": "^0.17.0",
+    "marked": "^0.3.6",
+    "moment": "^2.19.1",
     "node-sass": "^4.5.3",
     "nuxt": "^1.0.0-rc11",
     "sass-loader": "^6.0.6",
     "vue-style-loader": "^3.0.3"
   },
   "devDependencies": {
+    "@nuxtjs/axios": "^4.4.0",
+    "@nuxtjs/proxy": "^1.1.2",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",

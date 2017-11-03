@@ -1,18 +1,39 @@
 <template>
   <section class="post">
-    <p class="time">{{ post.time }}</p>
+    <p class="time">{{ post.createTime | formatTime }}</p>
     <h4 class="title">
-      <nuxt-link class="cat-link" :to="{ name: 'category', params: { id: post.catId }}">{{ post.catName }}</nuxt-link>
+      <nuxt-link class="cat-link" :to="{ name: 'category', params: { id: post.categoryId }}">{{ post.categoryName }}</nuxt-link>
       <nuxt-link class="title-link" :to="{ name: 'post', params: { id: post.id }}">{{ post.title }}</nuxt-link>
     </h4>
-    <p class="content"> {{ post.content }}</p>
+    <p class="content" v-html="post.content | markedContent"></p>
   </section>
 </template>
 
 <script>
+import moment from 'moment';
+const marked = require('marked');
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
 export default {
   props: {
     post: Object
+  },
+  filters: {
+    formatTime (time) {
+      return moment(time).format('YYYY-MM-DD');
+    },
+    markedContent (content) {
+      return marked(content);
+    }
   }
 };
 </script>
