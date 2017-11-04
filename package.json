@@ -16,7 +16,7 @@
     "axios": "^0.17.0",
     "marked": "^0.3.6",
     "moment": "^2.19.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.6.0",
     "nuxt": "^1.0.0-rc11",
     "sass-loader": "^6.0.6",
     "vue-style-loader": "^3.0.3"

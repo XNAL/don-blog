@@ -10,10 +10,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'http://at.alicdn.com/t/font_461741_hcbve0yai4ibe29.js' }]
+    script: [{ src: 'http://at.alicdn.com/t/font_461741_ncnu4wxixbeasjor.js' }]
   },
   // Global CSS
-  css: ['~assets/styles/reset.css', '~assets/styles/common.css'],
+  css: [
+    { src: '~assets/sass/app.scss', lang: 'sass' }, 
+  ],
   /*
   ** Customize the progress bar color
   */

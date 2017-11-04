@@ -15,33 +15,35 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@import "~assets/sass/app";
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  line-height: 60px;
-  background-color: rgba(255, 255, 255, 0.6);
+  height: 4.2em;
+  line-height: 4.2em;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 9999;
 
   .header-container {
-    color: #2d8cf0;
+    color: $base-color;
     .logo {
       float: left;
-      margin: 10px 15px 0;
-      width: 40px;
-      height: 40px;
+      margin: 0.6em 1em 0;
+      width: 3em;
+      height: 3em;
     }
     h2 {
       float: left;
-      font-size: 32px;
+      font-size: 2.2em;
       text-align: left;
       font-weight: 500;
-      width: 160px;
+      width: 5.5em;
     }
     .desc {
       float: left;
-      font-size: 16px;
+      font-size: 1em;
     }
   }
 }

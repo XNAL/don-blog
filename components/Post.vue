@@ -1,99 +1,106 @@
 <template>
   <section class="post">
-    <p class="time">{{ post.createTime | formatTime }}</p>
+    <div class="meta">
+      <p class="time">发布于 {{ post.createTime | formatTime }}</p>
+      <nuxt-link class="cat-link" :to="{ name: 'category', params: { id: post.categoryId }}">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-cat"></use>
+        </svg>{{ post.categoryName }}
+      </nuxt-link>
+    </div>
     <h4 class="title">
-      <nuxt-link class="cat-link" :to="{ name: 'category', params: { id: post.categoryId }}">{{ post.categoryName }}</nuxt-link>
       <nuxt-link class="title-link" :to="{ name: 'post', params: { id: post.id }}">{{ post.title }}</nuxt-link>
     </h4>
-    <p class="content" v-html="post.content | markedContent"></p>
+    <div class="markdown-body" v-html="markdownContent"></div>
+    <p class="more">
+      <nuxt-link :to="{ name: 'post', params: { id: post.id }}">
+        MORE<svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-more"></use>
+        </svg>
+      </nuxt-link>
+    </p>
   </section>
 </template>
 
 <script>
 import moment from 'moment';
 const marked = require('marked');
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
 
 export default {
   props: {
     post: Object
   },
+  data () {
+    return { markdownContent: '' };
+  },
+  created () {
+    this.markdownContent = marked(this.post.content, { sanitize: true });
+  },
   filters: {
     formatTime (time) {
-      return moment(time).format('YYYY-MM-DD');
-    },
-    markedContent (content) {
-      return marked(content);
+      return moment(time).format('MM月DD, YYYY');
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "~assets/sass/app";
 .post {
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  margin-bottom: 20px;
-  padding: 10px 20px;
+  margin-bottom: 1em;
+  padding: 1.4em;
 
   .title {
-    font-size: 16px;
+    font-size: 2.2em;
     color: #333;
-    line-height: 2;
-    margin-bottom: 10px;
+    line-height: 1;
+    margin-bottom: 1.5em;
+    font-weight: 300;
+  }
+  .meta {
+    position: relative;
+    float: right;
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1;
+    width: auto;
+    text-align: right;
 
+    .time {
+      line-height: 2;
+    }
     .cat-link {
-      position: relative;
-      display: inline-block;
-      padding: 1px 10px 3px 15px;
-      margin-top: -2px;
-      margin-right: 30px;
-      font-size: 12px;
-      color: #fff;
-      box-sizing: border-box;
-      background-color: #2d8cf0;
-      border-radius: 4px 2px 2px 4px;
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 100%;
-        content: '';
-        width: 0;
-        height: 0;
-        border-top: 14px solid transparent;
-        border-left: 20px solid #2d8cf0;
-        border-bottom: 14px solid transparent;
+      color: #999;
+      &:hover {
+        color: $base-color;
       }
+    }
+    .icon {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: -0.1em;
+      margin-right: 0.4em;
+      color: $base-color;
     }
   }
   .content {
-    font-size: 14px;
-    color: #555;
+    font-size: 1em;
+    color: #666;
     line-height: 1.5;
   }
-  .time {
-    position: absolute;
-    right: -32px;
-    top: 16px;
-    width: 120px;
-    transform: rotate(45deg);
-    text-align: center;
-    font-size: 12px;
-    line-height: 24px;
-    color: #666;
-    background: #e5e5e5;
-    filter: alpha(opacity=80);
-    background: hsla(0,0%,80%,.6);
+  .more {
+    font-size: 1.2em;
+    margin-top: 1.5em;
+    color: $base-color;
+    .icon {
+      width: 1.1em;
+      height: 1.1em;
+      vertical-align: -0.12em;
+      margin-left: 0.4em;
+    }
   }
 }
 </style>
