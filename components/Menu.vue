@@ -54,9 +54,9 @@ export default {};
     }
   }
   .icon {
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 0.8em;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
   }
 }
 </style>

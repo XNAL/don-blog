@@ -10,7 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'http://at.alicdn.com/t/font_461741_ncnu4wxixbeasjor.js' }]
+    script: [{ src: 'http://at.alicdn.com/t/font_461741_8tq3vf99w39b2o6r.js' }]
   },
   // Global CSS
   css: [
@@ -47,16 +47,5 @@ module.exports = {
   /*
   ** plugins
   */
-  plugins: [{ src: '~plugins/axios.js' }],
-  // modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
-  // proxy: [
-  //   [
-  //     '/blogapi',
-  //     {
-  //       target: 'http://localhost:9000', // api主机
-  //       pathRewrite: { '^/blogapi': '/blogapi' }
-  //     }
-  //   ]
-  //   // ['/blogapi', { target: 'http://xxx.com:8080/blogapi' }]
-  // ]
+  plugins: [{ src: '~plugins/axios.js' }]
 };

@@ -22,8 +22,6 @@
     "vue-style-loader": "^3.0.3"
   },
   "devDependencies": {
-    "@nuxtjs/axios": "^4.4.0",
-    "@nuxtjs/proxy": "^1.1.2",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",

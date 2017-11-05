@@ -2,18 +2,18 @@
   <section class="post">
     <div class="meta">
       <p class="time">发布于 {{ post.createTime | formatTime }}</p>
-      <nuxt-link class="cat-link" :to="{ name: 'category', params: { id: post.categoryId }}">
+      <nuxt-link class="cat-link" :to="`/category/${post.categoryId}`">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-cat"></use>
         </svg>{{ post.categoryName }}
       </nuxt-link>
     </div>
     <h4 class="title">
-      <nuxt-link class="title-link" :to="{ name: 'post', params: { id: post.id }}">{{ post.title }}</nuxt-link>
+      <nuxt-link class="title-link" :to="`/post/${post.id}`">{{ post.title }}</nuxt-link>
     </h4>
     <div class="markdown-body" v-html="markdownContent"></div>
     <p class="more">
-      <nuxt-link :to="{ name: 'post', params: { id: post.id }}">
+      <nuxt-link :to="`/post/${post.id}`">
         MORE<svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-more"></use>
         </svg>
@@ -24,7 +24,7 @@
 
 <script>
 import moment from 'moment';
-const marked = require('marked');
+import marked from 'marked';
 
 export default {
   props: {
@@ -54,10 +54,10 @@ export default {
   padding: 1.4em;
 
   .title {
+    margin-bottom: 1.5em;
     font-size: 2.2em;
     color: #333;
     line-height: 1;
-    margin-bottom: 1.5em;
     font-weight: 300;
   }
   .meta {
@@ -79,11 +79,10 @@ export default {
       }
     }
     .icon {
-      width: 1.2em;
-      height: 1.2em;
+      width: 0.9em;
+      height: 0.9em;
       vertical-align: -0.1em;
       margin-right: 0.4em;
-      color: $base-color;
     }
   }
   .content {
@@ -96,10 +95,10 @@ export default {
     margin-top: 1.5em;
     color: $base-color;
     .icon {
-      width: 1.1em;
-      height: 1.1em;
-      vertical-align: -0.12em;
-      margin-left: 0.4em;
+      width: 0.9em;
+      height: 0.9em;
+      vertical-align: -0.06em;
+      margin-left: 0.3em;
     }
   }
 }

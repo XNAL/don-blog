@@ -8,7 +8,6 @@ export default () => {
   // interceptors request
   axios.interceptors.request.use(
     config => {
-      console.log('axios', config);
       return config;
     },
     err => {
