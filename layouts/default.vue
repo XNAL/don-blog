@@ -30,12 +30,13 @@ export default {
 .main {
   position: relative;
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: calc(100vh - 5.2em);
 
   .main-container {
     position: relative;
     margin-top: 5.2em;
     margin-left: 15em;
+    min-height: calc(100vh - 10em);
   }
 }
 </style>

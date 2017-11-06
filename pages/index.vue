@@ -19,19 +19,21 @@ export default {
     return {
       isShowLoading: false,
       isNoMore: false,
-      pageNum: 10
+      page: 1
     };
   },
   asyncData () {
-    return axios.get(`/post/getPostList?page=1&pageNum=10`).then(res => {
+    const pageNum = 10;
+    return axios.get(`/post/getPostList?page=1&pageNum=${pageNum}`).then(res => {
       if (res.data.success === 1) {
         let noMore = false;
-        if (res.data.posts.length < 10) {
+        if (res.data.posts.length < pageNum) {
           noMore = true;
         }
         return {
           postList: res.data.posts,
-          isNoMore: noMore
+          isNoMore: noMore,
+          pageNum: pageNum
         };
       } else {
         return { postList: [] };
@@ -46,6 +48,16 @@ export default {
     loadMore: function () {
       if (!this.isNoMore) {
         this.isShowLoading = true;
+        this.page = this.page + 1;
+        axios.get(`/post/getPostList?page=${this.page}&pageNum=${this.pageNum}`).then(res => {
+          if (res.data.success === 1) {
+            if (res.data.posts.length < this.pageNum) {
+              this.isNoMore = true;
+            }
+            this.postList.push(...res.data.posts);
+            this.isShowLoading = false;
+          }
+        });
       }
     }
   }

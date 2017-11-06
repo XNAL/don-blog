@@ -5,15 +5,21 @@
         <use xlink:href="#icon-home"></use>
       </svg>HOME
     </nuxt-link>
-    <nuxt-link to="/cat" class="no-underline">
+    <nuxt-link to="/archive" class="no-underline">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-cat"></use>
-      </svg>CATEGORY
+        <use xlink:href="#icon-archive"></use>
+      </svg>ARCHIVE
     </nuxt-link>
     <nuxt-link to="/lab" class="no-underline">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-lab"></use>
       </svg>LABORATORY
+    </nuxt-link>
+    </nuxt-link>
+    <nuxt-link to="/lab" class="no-underline">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-about"></use>
+      </svg>ABOUT
     </nuxt-link>
     <a href="https://github.com/XNAL" target="_blank" class="no-underline">
       <svg class="icon" aria-hidden="true">
