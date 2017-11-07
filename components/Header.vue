@@ -2,11 +2,15 @@
     <header>
       <section class="header-container container">
 				<div class="logo-title">
-          <img class="logo" src="/logo.png" alt="logo">
-					<h2>DON</h2>
+          <nuxt-link to="/">
+            <img class="logo" src="/logo.png" alt="logo">
+            <h2>DON</h2>
+          </nuxt-link>
           <span class="desc">Talk is cheap. Show me the code.</span>
           <div class="search fr">
-            <svg class="icon" aria-hidden="true">
+            <input type="text" :class="{ 'show': showInput }" 
+                  v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
+            <svg class="icon" aria-hidden="true" @click="clickSearch">
               <use xlink:href="#icon-search"></use>
             </svg>
           </div>
@@ -14,6 +18,31 @@
 			</section>
     </header>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      keyword: '',
+      showInput: false
+    };
+  },
+  methods: {
+    clickSearch: function () {
+      if (this.showInput && this.keyword) {
+        this.searchKeyWord();
+      } else {
+        this.showInput = !this.showInput;
+      }
+    },
+    searchKeyWord: function () {
+      if (this.keyword) {
+        this.$router.push({ path: `/search/keyword/${this.keyword}` });
+      }
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 @import "~assets/sass/app";
@@ -48,12 +77,33 @@ header {
       font-size: 1em;
     }
     .search {
+      position: relative;
       float: right;
       .icon {
-        margin-top: 1.3em;
+        position: absolute;
+        top: 1.3em;
+        right: 0;
         width: 1.5em;
         height: 1.5em;
         color: #555;
+        cursor: pointer;
+      }
+      input {
+        position: absolute;
+        top: 1em;
+        right: 1.8em;
+        width: 0;
+        box-sizing: border-box;
+        line-height: 1.8em;
+        color: #666;
+        border: none;
+        border-bottom: 1px solid $base-color;
+        outline: none;
+        transition: 0.5s width linear;
+        &.show {
+          padding-left: 0.5em;
+          width: 15em;
+        }
       }
     }
   }

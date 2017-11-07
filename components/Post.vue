@@ -2,7 +2,7 @@
   <section class="post">
     <div class="meta">
       <p class="time">发布于 {{ post.createTime | formatTime }}</p>
-      <nuxt-link class="cat-link" :to="`/category/${post.categoryId}`">
+      <nuxt-link class="cat-link" :to="`/search/category/${post.categoryId}`">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-cat"></use>
         </svg>{{ post.categoryName }}
@@ -52,6 +52,7 @@ export default {
   background-color: #fff;
   margin-bottom: 1em;
   padding: 1.4em;
+  border-radius: 0.2em;
 
   .title {
     margin-bottom: 1.5em;

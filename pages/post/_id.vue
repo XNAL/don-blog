@@ -18,7 +18,7 @@
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-tag"></use>
       </svg>
-      <span class="tag" v-for="tag in tags" :key="tag.tagId">{{ tag.tagName }}</span>
+      <nuxt-link class="tag" v-for="tag in tags" :key="tag.tagId" :to="`/search/tag/${tag.tagId}`">{{ tag.tagName }}</nuxt-link>
     </div>
     <div class="prev-next">
       <p class="prev fl">
@@ -109,7 +109,7 @@ export default {
   }
   .tags {
     margin: 3em auto;
-    span {
+    a {
       display: inline-block;
       padding: 0.4em 0.6em;
       margin-right: 0.5em;

@@ -1,18 +1,14 @@
 <template>
   <section class="index"> 
     <post-list v-for="post in postList" :post="post" :key="post.id"></post-list>
-    <div class="post-more" @click="loadMore">
-      <p class="load-more" v-show="!isNoMore && !isShowLoading">加载更多</p>
-      <p class="no-more" v-show="isNoMore">没有更多了</p>
-      <loading v-show="isShowLoading"></loading>
-    </div>
+    <load-more :is-no-more="isNoMore" :is-show-loading="isShowLoading" @load-more="loadMore"></load-more>
   </section>
 </template>
 
 <script>
 import axios from 'axios';
 import Post from '~/components/Post.vue';
-import Loading from '~/components/Loading.vue';
+import LoadMore from '~/components/LoadMore.vue';
 
 export default {
   data () {
@@ -42,7 +38,7 @@ export default {
   },
   components: {
     'post-list': Post,
-    Loading
+    LoadMore
   },
   methods: {
     loadMore: function () {
@@ -63,15 +59,4 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.post-more {
-  margin-bottom: 1em;
-  padding: 0.5em 0;
-  line-height: 2em;
-  cursor: pointer;
-  text-align: center;
-  background-color: #fff;
-}
-</style>
 

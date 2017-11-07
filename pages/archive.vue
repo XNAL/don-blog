@@ -30,25 +30,33 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-time"></use>
         </svg>时间
-      </p>      
+      </p>  
+      <div class="sort-items">
+        <time-line v-for="(time, index) in timePosts" :key="index" :time-post="time"></time-line>    
+      </div>
     </div>
   </section>
 </template>
 
 <script>
 import axios from 'axios';
+import TimeLine from '~/components/TimeLine';
 export default {
   asyncData () {
     return axios.get(`/post/getArchive`).then(res => {
       if (res.data.success === 1) {
         return {
           categories: res.data.categories,
-          tags: res.data.tags
+          tags: res.data.tags,
+          timePosts: res.data.times
         };
       } else {
         return { categories: [], tags: [] };
       }
     });
+  },
+  components: {
+    TimeLine
   }
 };
 </script>
@@ -57,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/sass/app';
 .archive {
-  padding: 2em 0;
+  padding-top: 2em;
   background-color: #fff;
 
   .archive-title {
@@ -76,6 +84,10 @@ export default {
   }
   .archive-com-sec {
     margin-bottom: 1em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   .sort-title {
     font-size: 1.5em;
@@ -90,7 +102,7 @@ export default {
     }
   }
   .sort-items {
-    padding: 1em;
+    padding: 0.5em 1em;
     font-size: 1.2em;
     a {
       display: inline-block;

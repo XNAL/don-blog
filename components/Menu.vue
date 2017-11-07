@@ -10,7 +10,7 @@
         <use xlink:href="#icon-archive"></use>
       </svg>ARCHIVE
     </nuxt-link>
-    <nuxt-link to="/lab" class="no-underline">
+    <nuxt-link to="/laboratory" class="no-underline">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-lab"></use>
       </svg>LABORATORY
