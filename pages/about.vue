@@ -1,0 +1,122 @@
+<template>
+  <section class="about">
+    <h2 class="title">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-archive"></use>
+      </svg>关于
+    </h2>
+    <p>😄曾使用JS + HTML5 + CSS3 + Node.js + Express.js + Mongodb开发过一个博客网站，也部署了一段时间😄</p>
+    <p class="indent-1">😭但因为当时初学，最后效果并不是很满意😭</p>
+    <p class="indent-2">😅后使用Hexo + Github Pages搭建了新的博客😅</p>
+    <p class="indent-3">🙁虽有很多好处，但个性化不足，以及存在的一些限制。依旧不是很满意🙁</p>
+    <p class="indent-4">😜遂决定重新开发自己的博客😜</p>
+    <p class="indent-4">😀使用Vue.js + Nuxt.js + ES6/7 + Node.js + Koa.js + mySql开发了此博客，代码已在Github上开源😀</p>
+    <p class="indent-3">😉前端代码:<a href="https://github.com/XNAL/don-blog" target="_blank">Talk is cheap</a>😉</p>
+    <p class="indent-2">😆服务端代码:<a href="https://github.com/XNAL/don-blog-backManage" target="_blank">Show me the code</a>😆</p>
+    <p class="indent-1">😎自己开发的博客可以自由开发。以后也会添加一些新想法、新东西。当然也存在一些不足😎</p>
+    <p>😙如果有什么好的建议和意见，欢迎和我联系！😙</p>
+    <div class="contact">      
+      <span class="qrcode wx">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-weixin"></use>
+        </svg>
+      </span>
+      <span class="qrcode qq">
+        <svg class="icon qq" aria-hidden="true">
+          <use xlink:href="#icon-qq"></use>
+        </svg>
+      </span>
+      <a href="mailto:772528797@qq.com" class="no-underline" title="772528797@qq.com">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-email"></use>
+        </svg>
+      </a>
+    </div>
+  </section>
+</template>
+
+<style lang="scss" scoped>
+@import "~assets/sass/app";
+.about {
+  padding: 2em;
+  min-height: $minHeight;
+  background-color: #fff;
+  box-sizing: border-box;
+  .title {
+    margin-bottom: 1.2em;
+    font-size: 2.5em;
+    color: #333;
+    line-height: 1;
+    text-align: center;
+
+    .icon {
+      width: 0.9em;
+      height: 0.9em;
+      vertical-align: -0.1em;
+      margin-right: 0.3em;
+    }
+  }
+  p {
+    font-size: 1em;
+    line-height: 2;
+    color: #333;
+
+    a {
+      color: $base-color;
+      margin-left: 0.5em;
+    }
+  }
+  .indent-1 {
+    text-indent: 2em;
+  }
+  .indent-2 {
+    text-indent: 4em;
+  }
+  .indent-3 {
+    text-indent: 6em;
+  }
+  .indent-4 {
+    text-indent: 8em;
+  }
+  .contact {
+    margin-top: 4em;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+    .icon {
+      width: 5em;
+      height: 5em;
+    }
+    .qrcode {
+      position: relative;
+      cursor: pointer;
+      &::after {
+        content:'';
+        position: absolute;
+        width: 0;
+        height: 0;
+        z-index: 100;
+        bottom: 100%;
+        background-size: 100% 100%;
+        transition: all 0.5s;
+      }
+      &:hover {
+        &::after {
+          width: 20em;
+          height: 20em;
+        }
+      }
+    }
+    .wx::after {      
+      left: 100%;
+      background-image: url(/weixin.png);
+    }
+    .qq::after {
+      right: 100%;
+      background-image: url(/qq.png);
+    }
+  }
+}
+</style>
+

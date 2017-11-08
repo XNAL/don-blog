@@ -6,7 +6,7 @@
             <img class="logo" src="/logo.png" alt="logo">
             <h2>DON</h2>
           </nuxt-link>
-          <span class="desc">Talk is cheap. Show me the code.</span>
+          <span class="desc">Stay curious. Stay humble.</span>
           <div class="search fr">
             <input type="text" :class="{ 'show': showInput }" 
                   v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
@@ -75,6 +75,7 @@ header {
     .desc {
       float: left;
       font-size: 1em;
+      letter-spacing: 0.08em;
     }
     .search {
       position: relative;
@@ -102,7 +103,7 @@ header {
         transition: 0.5s width linear;
         &.show {
           padding-left: 0.5em;
-          width: 15em;
+          width: 18em;
         }
       }
     }

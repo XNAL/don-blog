@@ -16,7 +16,7 @@
       </svg>LABORATORY
     </nuxt-link>
     </nuxt-link>
-    <nuxt-link to="/lab" class="no-underline">
+    <nuxt-link to="/about" class="no-underline">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-about"></use>
       </svg>ABOUT
