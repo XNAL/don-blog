@@ -5,16 +5,16 @@
         <use xlink:href="#icon-archive"></use>
       </svg>关于
     </h2>
-    <p>😄曾使用JS + HTML5 + CSS3 + Node.js + Express.js + Mongodb开发过一个博客网站，也部署了一段时间😄</p>
-    <p class="indent-1">😭但因为当时初学，最后效果并不是很满意😭</p>
-    <p class="indent-2">😅后使用Hexo + Github Pages搭建了新的博客😅</p>
-    <p class="indent-3">🙁虽有很多好处，但个性化不足，以及存在的一些限制。依旧不是很满意🙁</p>
-    <p class="indent-4">😜遂决定重新开发自己的博客😜</p>
-    <p class="indent-4">😀使用Vue.js + Nuxt.js + ES6/7 + Node.js + Koa.js + mySql开发了此博客，代码已在Github上开源😀</p>
-    <p class="indent-3">😉前端代码:<a href="https://github.com/XNAL/don-blog" target="_blank">Talk is cheap</a>😉</p>
-    <p class="indent-2">😆服务端代码:<a href="https://github.com/XNAL/don-blog-backManage" target="_blank">Show me the code</a>😆</p>
-    <p class="indent-1">😎自己开发的博客可以自由开发。以后也会添加一些新想法、新东西。当然也存在一些不足😎</p>
-    <p>😙如果有什么好的建议和意见，欢迎和我联系！😙</p>
+    <p>😄 曾使用JS + HTML5 + CSS3 + Node.js + Express.js + Mongodb开发过一个博客网站，也部署了一段时间😄</p>
+    <p class="indent-1">😭 但因为当时初学，最后效果并不是很满意😭</p>
+    <p class="indent-2">😅 后使用Hexo + Github Pages搭建了新的博客😅</p>
+    <p class="indent-3">🙁 虽有很多好处，但个性化不足，以及存在的一些限制。依旧不是很满意🙁</p>
+    <p class="indent-4">😜 遂决定重新开发自己的博客😜</p>
+    <p class="indent-4">😀 使用Vue.js + Nuxt.js + ES6/7 + Node.js + Koa.js + mySql开发了此博客，代码已在Github上开源😀</p>
+    <p class="indent-3">😉 前端代码:<a href="https://github.com/XNAL/don-blog" target="_blank">Talk is cheap.</a>😉</p>
+    <p class="indent-2">😆 服务端代码:<a href="https://github.com/XNAL/don-blog-backManage" target="_blank">Show me the code.</a>😆</p>
+    <p class="indent-1">😎 自己开发博客的好处是可以随意捣鼓，按照自己的想法去实现。当然也会存在一些不足😎</p>
+    <p>😙 如果有什么好的建议和意见，欢迎和我联系！😙</p>
     <div class="contact">      
       <span class="qrcode wx">
         <svg class="icon" aria-hidden="true">
@@ -26,7 +26,7 @@
           <use xlink:href="#icon-qq"></use>
         </svg>
       </span>
-      <a href="mailto:772528797@qq.com" class="no-underline" title="772528797@qq.com">
+      <a href="mailto:wwwtdonsite@gmail.com" class="no-underline" title="wwwtdonsite@gmail.com">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-email"></use>
         </svg>

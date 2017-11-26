@@ -6,7 +6,11 @@
       </svg>实验室
     </h2>
     <div class="proj-list">
-      <project-list class="lab-project" v-for="project in projectList" :project="project" :key="project.id"></project-list>
+      <project-list class="lab-project" 
+                    v-for="(project, index) in projectList" 
+                    :project="project"
+                    :position="`${index % 2 === 0 ? 'left' : 'right'}`"
+                    :key="project.id"></project-list>
     </div>
   </section>
 </template>
@@ -56,16 +60,6 @@ export default {
       height: 0.9em;
       vertical-align: -0.1em;
       margin-right: 0.3em;
-    }
-  }
-  .proj-list {    
-    display: flex;
-    flex-wrap: wrap;  
-    justify-content: space-around;
-    
-    .lab-project {
-      width: 30%;
-      margin-bottom: 2em;
     }
   }
 }

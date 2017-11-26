@@ -91,7 +91,7 @@ header {
       }
       input {
         position: absolute;
-        top: 1em;
+        top: 0.4em;
         right: 1.8em;
         width: 0;
         box-sizing: border-box;
@@ -99,10 +99,11 @@ header {
         color: #666;
         border: none;
         border-bottom: 1px solid $base-color;
+        background-color: rgba(255, 255, 255, 0.7);
         outline: none;
         transition: 0.5s width linear;
         &.show {
-          padding-left: 0.5em;
+          padding: 0.3em 0.5em;
           width: 18em;
         }
       }
