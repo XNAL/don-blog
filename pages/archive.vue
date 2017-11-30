@@ -42,6 +42,11 @@
 import axios from 'axios';
 import TimeLine from '~/components/TimeLine';
 export default {
+  head () {
+    return {
+      title: '归档 - Powered by Don'
+    };
+  },
   asyncData () {
     return axios.get(`/post/getArchive`).then(res => {
       if (res.data.success === 1) {

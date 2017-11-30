@@ -46,6 +46,11 @@ import moment from 'moment';
 import marked from 'marked';
 
 export default {
+  head () {
+    return {
+      title: `${this.post.title} - Powered by Don`
+    };
+  },
   validate ({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id);

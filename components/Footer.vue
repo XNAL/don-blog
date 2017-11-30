@@ -1,7 +1,7 @@
 <template>
   <footer>
 		<p>版权所有 © 2017 - Don</p>
-		<p>Powered by Node.JS & Nuxt.Js</p>
+		<p>Powered by Node.js & Vue.js & Nuxt.js</p>
   </footer>
 </template>
 

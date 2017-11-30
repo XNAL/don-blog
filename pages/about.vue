@@ -22,7 +22,7 @@
         </svg>
       </span>
       <span class="qrcode qq">
-        <svg class="icon qq" aria-hidden="true">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-qq"></use>
         </svg>
       </span>
@@ -34,6 +34,16 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  head () {
+    return {
+      title: '关于 - Powered by Don'
+    };
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 @import "~assets/sass/app";
@@ -94,26 +104,27 @@
       &::after {
         content:'';
         position: absolute;
-        width: 0;
-        height: 0;
-        z-index: 100;
-        bottom: 100%;
+        width: 20em;
+        height: 20em;
+        bottom: 5.5em;
         background-size: 100% 100%;
         transition: all 0.5s;
+        opacity: 0;
+        z-index: -1;
       }
       &:hover {
         &::after {
-          width: 20em;
-          height: 20em;
+          opacity: 1;
+          z-index: 1;
         }
       }
     }
-    .wx::after {      
-      left: 100%;
+    .wx::after {   
+      left: -7.5em;
       background-image: url(/weixin.png);
     }
     .qq::after {
-      right: 100%;
+      left: -8em;
       background-image: url(/qq.png);
     }
   }

@@ -64,6 +64,10 @@ header {
       margin: 0.6em 1em 0;
       width: 3em;
       height: 3em;
+      transition: all .3s;
+      &:hover {
+        transform: scale(1.2) rotate(360deg);
+      }
     }
     h2 {
       float: left;

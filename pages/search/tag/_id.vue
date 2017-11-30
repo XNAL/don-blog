@@ -16,6 +16,11 @@ import Post from '~/components/Post.vue';
 import LoadMore from '~/components/LoadMore.vue';
 
 export default {
+  head () {
+    return {
+      title: `${this.tagName} - Powered by Don`
+    };
+  },
   data () {
     return {
       isShowLoading: false,

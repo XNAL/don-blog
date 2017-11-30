@@ -20,6 +20,11 @@ import axios from 'axios';
 import Project from '~/components/Project.vue';
 
 export default {
+  head () {
+    return {
+      title: '实验室 - Powered by Don'
+    };
+  },
   asyncData () {
     return axios.get(`/post/getLaboratory`).then(res => {
       if (res.data.success === 1) {
