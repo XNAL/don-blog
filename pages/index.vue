@@ -11,6 +11,11 @@ import Post from '~/components/Post.vue';
 import LoadMore from '~/components/LoadMore.vue';
 
 export default {
+  head () {
+    return {
+      title: 'Don\'s Blog - Stay curious. Stay humble.'
+    };
+  },
   data () {
     return {
       isShowLoading: false,

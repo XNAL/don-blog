@@ -94,7 +94,7 @@ export default {
   .main-container {
     position: relative;
     margin-top: 5.2em;
-    margin-left: 15em;
+    // margin-left: 15em;
     min-height: $minHeight;
   }
   .top-bar {

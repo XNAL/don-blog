@@ -2,7 +2,7 @@
   <section class="about">
     <h2 class="title">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-archive"></use>
+        <use xlink:href="#icon-about"></use>
       </svg>关于
     </h2>
     <p>😄 曾使用JS + HTML5 + CSS3 + Node.js + Express.js + Mongodb开发过一个博客网站，也部署了一段时间😄</p>
@@ -62,7 +62,7 @@ export default {
     .icon {
       width: 0.9em;
       height: 0.9em;
-      vertical-align: -0.1em;
+      vertical-align: -0.05em;
       margin-right: 0.3em;
     }
   }

@@ -43,8 +43,8 @@ export default {};
 .menu {
   position: fixed;
   top: 5.2em;
-  left: calc(50% - 40em);
-  width: 14em;
+  // left: calc(50% - 40em);
+  // width: 14em;
   a {
     display: block;
     margin-bottom: 0.8em;

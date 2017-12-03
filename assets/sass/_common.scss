@@ -10,6 +10,7 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 80em;
+  box-sizing: border-box;
 }
 
 a {
@@ -93,4 +94,57 @@ a {
 
 .fr {
   float: right;
+}
+
+/*
+ * 响应式布局
+ */
+.menu {
+  left: calc(50% - 40em);
+  width: 14em;
+}
+.main-container {
+  margin-left: 15em;
+}
+.header-container {
+  padding-left: 1em;
+  .side-menu-icon {
+    display: none;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1120px) {
+  .menu {
+    left: 0;
+  }
+  .header-container {
+    padding-right: 1em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    padding-right: 1em;
+    .desc {
+      display: none;
+    }
+    .logo-info {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      margin-left: 0;
+    }
+    .side-menu-icon {
+      display: inline;
+    }
+  }
+  .menu {
+    display: none;
+  }
+  
+  .main-container {
+    margin-left: 0;
+  }
+  
 }
