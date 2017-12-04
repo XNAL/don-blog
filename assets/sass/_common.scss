@@ -112,6 +112,18 @@ a {
     display: none;
   }
 }
+.post {
+  .title {
+    margin-bottom: 1.5em;
+  }
+  .meta {
+    display: block;
+  }
+  .small-screen-meta {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 769px) and (max-width: 1120px) {
   .menu {
     left: 0;
@@ -146,5 +158,15 @@ a {
   .main-container {
     margin-left: 0;
   }
-  
+  .post {
+    .title {
+      margin-bottom: 0.5em;
+    }
+    .meta {
+      display: none;
+    }
+    .small-screen-meta {
+      display: block;
+    }
+  }
 }

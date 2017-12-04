@@ -11,6 +11,18 @@
     <h4 class="title">
       <nuxt-link class="title-link" :to="`/post/${post.id}`">{{ post.title }}</nuxt-link>
     </h4>
+    <div class="small-screen-meta">
+      <nuxt-link :to="`/category/${post.categoryId}`" class="cat-link">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-cat"></use>
+        </svg>{{ post.categoryName }}
+      </nuxt-link>
+      <span class="time">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-time"></use>
+        </svg>{{ post.createTime | formatTimeDate }}
+      </span>
+    </div>
     <div class="markdown-body" v-html="markdownContent"></div>
     <p class="more">
       <nuxt-link :to="`/post/${post.id}`">
@@ -39,6 +51,10 @@ export default {
   filters: {
     formatTime (time) {
       return moment(time).format('MM月DD, YYYY');
+    },
+    formatTimeDate (time) {
+      moment.locale('zh-cn');
+      return moment(time).format('YYYY年MM月DD日 dddd a');
     }
   }
 };
@@ -55,7 +71,7 @@ export default {
   border-radius: 0.2em;
 
   .title {
-    margin-bottom: 1.5em;
+    // margin-bottom: 1.5em;
     font-size: 2.2em;
     color: #333;
     line-height: 1;
@@ -78,6 +94,21 @@ export default {
       &:hover {
         color: $base-color;
       }
+    }
+    .icon {
+      width: 0.9em;
+      height: 0.9em;
+      vertical-align: -0.1em;
+      margin-right: 0.4em;
+    }
+  }
+  .small-screen-meta {
+    margin-bottom: 2em;
+    font-size: 1em;
+    color: #888;
+    padding: 0.2em;
+    .cat-link {
+      margin-right: 2em;
     }
     .icon {
       width: 0.9em;

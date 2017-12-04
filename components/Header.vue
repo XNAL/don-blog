@@ -125,7 +125,6 @@ header {
         color: #666;
         border: none;
         border-bottom: 1px solid $base-color;
-        // background-color: rgba(255, 255, 255, 0.7);
         background: #fcfcfc;
         outline: none;
         transition: 0.5s width linear;
