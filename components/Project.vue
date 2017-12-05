@@ -1,33 +1,22 @@
 <template>
   <section class="project">
-    <div :class="['part-one', `${position === 'right' ? 'right' : 'left'}`]">
+    <div :class="['part-one', 'part-width', `${position === 'right' ? 'right' : 'left'}`]">
       <img :src="project.poster" alt="项目图片">
-      <div class="operate">
-        <span class="operate-update">
-          <svg class="icon" aria-hidden="true" @click="updateProject">
-            <use xlink:href="#icon-edit"></use>
-          </svg>
-        </span>
-        <span class="operate-delete">
-          <svg class="icon" aria-hidden="true" @click="deleteProject">
-            <use xlink:href="#icon-rubbish"></use>
-          </svg>
-        </span>
-      </div>
     </div>
-    <div :class="['part-two', `${(position === 'right' ? 'right' : 'left') === 'left' ? 'right' : 'left'}`]">
+    <div :class="['part-two', 'part-width', 'part-relative', 
+        `${(position === 'right' ? 'right' : 'left') === 'left' ? 'right' : 'left'}`]">
       <h3 class="name">{{ project.name }}</h3>
       <p class="description">{{ project.description }}</p>
       <p class="link-address" v-if="project.link !== ''">
         <a :href="project.link" class="link" target="_blank">
-          <svg class="icon" aria-hidden="true" @click="deleteProject">
+          <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-web"></use>
           </svg>在线效果
         </a>
       </p>
       <p class="link-address" v-if="project.github">
         <a :href="project.github" class="github" target="_blank">
-          <svg class="icon" aria-hidden="true" @click="deleteProject">
+          <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github"></use>
           </svg>GitHub查看
         </a>
@@ -56,7 +45,7 @@ export default {
   
   .part-one {
     position: relative;
-    width: 50%;
+    // width: 50%;
     box-sizing: border-box;
     img {
       width: 100%;
@@ -68,15 +57,12 @@ export default {
     &.right {
       float: right;
     }
-    .operate {
-      display: none;
-    }
   }
   .part-two {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    // width: 50%;
     padding: 0 1em;
     box-sizing: border-box;
     text-align: center;

@@ -12,7 +12,7 @@
         </svg>类别
       </p>
       <div class="sort-items">
-        <nuxt-link :to="`/search/category/${cat.id}`" v-for="cat in categories" :key="cat.id">{{ cat.name }} ({{ cat.count }})</nuxt-link>
+        <nuxt-link :to="`/search/category/${cat.id}`" v-for="cat in categories" :key="cat.id" v-if="cat.count > 0">{{ cat.name }} ({{ cat.count }})</nuxt-link>
       </div>
     </div>
     <div class="archive-com-sec archive-tag">
@@ -22,7 +22,7 @@
         </svg>标签
       </p>    
       <div class="sort-items">
-        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="tag in tags" :key="tag.id">{{ tag.name }} ({{ tag.count }})</nuxt-link>
+        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="tag in tags" :key="tag.id" v-if="tag.count > 0">{{ tag.name }} ({{ tag.count }})</nuxt-link>
       </div>  
     </div>
     <div class="archive-com-sec archive-time">

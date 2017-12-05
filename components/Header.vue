@@ -19,6 +19,12 @@
             <use xlink:href="#icon-search"></use>
           </svg>
         </div>
+        <div :class="['small-screen-search', { 'show': showInput }]">
+          <input type="text" v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
+          <svg class="icon" aria-hidden="true" @click="hideSearch">
+            <use xlink:href="#icon-delete"></use>
+          </svg>
+        </div>
 			</section>
     </header>
     <side-menu :is-show="isShowSideMenu" @hide-menu="isShowSideMenu = false"></side-menu>  
@@ -51,6 +57,10 @@ export default {
       if (this.keyword) {
         this.$router.push({ path: `/search/keyword/${this.keyword}` });
       }
+    },
+    hideSearch: function () {
+      this.keyword = '';
+      this.showInput = false;
     }
   }
 };
@@ -65,7 +75,7 @@ header {
   right: 0;
   height: 4.2em;
   line-height: 4.2em;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid rgba(238, 238, 238, 0.6);
   z-index: 999;
   overflow: hidden;
@@ -132,6 +142,43 @@ header {
           padding: 0.3em 0 0.1em 0.8em;
           width: 18em;
         }
+      }
+    }
+    .small-screen-search {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4.2em;
+      z-index: 1000;
+      background: #fff;
+      padding: 0.6em 2.5em 0.6em 1em;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: 0.3s all linear;
+      input {
+        float: left;
+        width: 100%;
+        height: 2.5em;
+        font-size: 1.2em;
+        line-height: 2.5em;
+        color: #888;
+        box-sizing: border-box;
+        outline: none;
+      }
+      .icon {
+        position: absolute;
+        top: 1.6em;
+        right: 1.2em;
+        width: 1em;
+        height: 1em;
+        color: #555;
+        cursor: pointer;
+      }
+      &.show {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     .side-menu-icon {
