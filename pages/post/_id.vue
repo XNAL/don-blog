@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import Hlj from 'highlight.js';
 import axios from 'axios';
 import moment from 'moment';
 import marked from 'marked';
@@ -73,6 +74,11 @@ export default {
     return { markdownContent: '' };
   },
   created () {
+    marked.setOptions({
+      highlight: function (code) {
+        return Hlj.highlightAuto(code).value;
+      }
+    });
     this.markdownContent = marked(this.post.content, { sanitize: true });
   },
   filters: {

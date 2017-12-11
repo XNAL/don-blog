@@ -14,7 +14,8 @@ module.exports = {
   },
   // Global CSS
   css: [
-    { src: '~assets/sass/app.scss', lang: 'sass' }, 
+    { src: '~assets/sass/app.scss', lang: 'sass' },
+    { src: 'highlight.js/styles/atelier-cave-light.css' } 
   ],
   /*
   ** Customize the progress bar color
