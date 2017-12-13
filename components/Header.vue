@@ -11,7 +11,7 @@
           <img class="logo" src="/logo.png" alt="logo">
           <h2>DON</h2>
         </nuxt-link>
-        <span class="desc">Stay curious. Stay humble.</span>
+        <span class="desc">STAY CURIOUS. STAY HUMBLE.</span>
         <div class="search fr">
           <input type="text" :class="{ 'show': showInput }" 
                 v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
@@ -104,13 +104,12 @@ header {
       font-size: 2.2em;
       text-align: left;
       font-weight: 500;
-      // width: 5.5em;
     }
     .desc {
       float: left;
       margin-left: 8em;
       font-size: 1em;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
     .search {
       position: relative;
@@ -156,7 +155,7 @@ header {
       box-sizing: border-box;
       opacity: 0;
       transform: translateY(-100%);
-      transition: 0.3s all linear;
+      transition: 0.4s all linear;
       input {
         float: left;
         width: 100%;
@@ -165,6 +164,7 @@ header {
         line-height: 2.5em;
         color: #888;
         box-sizing: border-box;
+        border: none;
         outline: none;
       }
       .icon {
@@ -185,7 +185,7 @@ header {
       position: relative;
       .icon {
         position: absolute;
-        top: 1.3em;
+        top: 1.4em;
         left: 0;
         width: 1.4em;
         height: 1.4em;

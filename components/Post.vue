@@ -71,10 +71,9 @@ export default {
   border-radius: 0.2em;
 
   .title {
-    // margin-bottom: 1.5em;
     font-size: 2.2em;
     color: #333;
-    line-height: 1;
+    line-height: 1.3;
     font-weight: 300;
   }
   .meta {
