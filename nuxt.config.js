@@ -6,8 +6,10 @@ module.exports = {
     title: "Powered by Don",
     meta: [
       { charset: 'utf-8' },
+      { name: 'author', content: 'wwwtdonsite@gmail.com' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'keywords', name: 'keywords', content: 'tdon, Vue, Nuxt, Node, 前端开发, JavaScript' },
+      { hid: 'description', name: 'description', content: '基于Vue.js和Node.js开发的前端博客' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [{ src: 'http://at.alicdn.com/t/font_461741_jthqvin68o8estt9.js' }]

@@ -7,10 +7,10 @@
     </h2>
     <p class="small-screen-indent">😄 曾使用JS + HTML5 + CSS3 + Node.js + Express.js + Mongodb开发过一个博客网站，也部署了一段时间😄</p>
     <p class="indent-1 small-screen-indent">😭 但因为当时初学，最后效果并不是很满意😭</p>
-    <p class="indent-2 small-screen-indent">😅 后使用Hexo + Github Pages搭建了新的博客😅</p>
+    <p class="indent-2 small-screen-indent">😅 后使用Hexo + GitHub Pages搭建了新的博客😅</p>
     <p class="indent-3 small-screen-indent">🙁 虽有很多好处，但个性化不足，以及存在的一些限制。依旧不是很满意🙁</p>
     <p class="indent-4 small-screen-indent">😜 遂决定重新开发自己的博客😜</p>
-    <p class="indent-4 small-screen-indent">😀 使用Vue.js + Nuxt.js + ES6/7 + Node.js + Koa.js + mySql开发了此博客，代码已在Github上开源😀</p>
+    <p class="indent-4 small-screen-indent">😀 使用Vue.js + Nuxt.js + ES6/7 + Node.js + Koa.js + mySql开发了此博客，代码已在GitHub上开源😀</p>
     <p class="indent-3 small-screen-indent">😉 前端代码:<a href="https://github.com/XNAL/don-blog" target="_blank">Talk is cheap.</a>😉</p>
     <p class="indent-2 small-screen-indent">😆 服务端代码:<a href="https://github.com/XNAL/don-blog-backManage" target="_blank">Show me the code.</a>😆</p>
     <p class="indent-1 small-screen-indent">😎 自己开发博客的好处是可以随意捣鼓，按照自己的想法去实现。当然也会存在一些不足😎</p>
