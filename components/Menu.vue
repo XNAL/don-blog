@@ -15,7 +15,6 @@
         <use xlink:href="#icon-lab"></use>
       </svg>LABORATORY
     </nuxt-link>
-    </nuxt-link>
     <nuxt-link to="/about" class="no-underline">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-about"></use>
@@ -31,6 +30,11 @@
         <use xlink:href="#icon-sf"></use>
       </svg>SEGMENTFAULT
     </a>
+    <a href="https://juejin.im/user/59b9f345f265da066464180c" target="_blank" class="no-underline juejin">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-juejin"></use>
+      </svg>JUEJIN
+    </a>
   </nav>
 </template>
 
@@ -43,8 +47,6 @@ export default {};
 .menu {
   position: fixed;
   top: 5.2em;
-  // left: calc(50% - 40em);
-  // width: 14em;
   a {
     display: block;
     margin-bottom: 0.8em;
@@ -57,6 +59,11 @@ export default {};
     &.nuxt-link-exact-active {
       color: $base-color;
       background-color: #fff;
+    }
+    &.juejin {
+      .icon {
+        vertical-align: -0.05em;
+      }
     }
   }
   .icon {

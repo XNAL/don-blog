@@ -12,7 +12,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: '基于Vue.js和Node.js开发的前端博客' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'http://at.alicdn.com/t/font_461741_jthqvin68o8estt9.js' }]
+    script: [{ src: 'http://at.alicdn.com/t/font_461741_4nduxuexsi3sor.js' }]
   },
   // Global CSS
   css: [
