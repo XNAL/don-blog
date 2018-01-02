@@ -46,7 +46,10 @@ export default {
     return { markdownContent: '' };
   },
   created () {
-    this.markdownContent = marked(this.post.content, { sanitize: true });
+    let markdown = marked(this.post.content, { sanitize: true });
+    let markdownArr = markdown.split(/\n/);
+    let showSize = markdownArr.length > 10 ? 10 : markdownArr.length;
+    this.markdownContent = markdownArr.slice(0, showSize).join('\n');
   },
   filters: {
     formatTime (time) {
