@@ -37,6 +37,7 @@
         </nuxt-link>
       </p>
     </div>
+    <comment></comment>
    </section>
 </template>
 
@@ -45,8 +46,12 @@ import Hlj from 'highlight.js';
 import axios from 'axios';
 import moment from 'moment';
 import marked from 'marked';
+import Comment from '~/components/Comment';
 
 export default {
+  components: {
+    Comment
+  },
   head () {
     return {
       title: `${this.post.title} - Powered by Don`
