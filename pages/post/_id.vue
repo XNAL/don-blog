@@ -37,7 +37,7 @@
         </nuxt-link>
       </p>
     </div>
-    <comment></comment>
+    <comment :postId="postId"></comment>
    </section>
 </template>
 
@@ -65,13 +65,20 @@ export default {
     return axios.get(`/post/getPost/${params.id}`).then(res => {
       if (res.data.success === 1) {
         return {
+          postId: params.id,
           post: res.data.post,
           tags: res.data.tags,
           prev: res.data.prev,
           next: res.data.next
         };
       } else {
-        return { post: {}, tags: [], prev: {}, next: {} };
+        return {
+          postId: params.id,
+          post: {},
+          tags: [],
+          prev: {},
+          next: {}
+        };
       }
     });
   },
