@@ -3,10 +3,15 @@
     <section class="comment-box">
       <div class="curve"></div>
       <div class="login-mask">
-        <div class="login">登录</div>
+        <div class="login">
+          <img src="../static/avatar.png" alt="默认头像">
+        </div>
       </div>
       <div class="content-area">
-        <textarea rows="6" v-model="newComment.content" placeholder="此时此刻此地，要不要说点什么呢？"></textarea>
+        <div class="content-area-mask">
+          <p class="login-tips">暂无评论权限，请使用GitHub账号登陆后发表评论。</p>
+        </div>
+        <textarea rows="6" v-model="newComment.content"></textarea>
       </div>
       <div class="comment-action">
         <button class="btn-comment" @click="addNewComment">评论一下</button>
@@ -19,18 +24,14 @@
         <ul class="comment-list">
           <li class="comment-list-item" v-for="comment in comments" :key="comment.id">
             <div class="user-avater">
-              <img :src="comment.avater" alt="头像">
+              <img :src="comment.avatar" alt="头像">
             </div>
             <div class="comment-item-info">
-              <div class="comment-info-time">
-                <p class="user-name">{{ comment.userName }}</p>
-                <p class="comment-time">{{ comment.createdTime | formatTime }}</p>
-              </div>
+              <p class="user-name">{{ comment.userName }}</p>
               <div class="comment-item-content">
                 {{ comment.content }}
-                <span>点赞</span>
-                <span>回复</span>
               </div>
+              <p class="comment-time">{{ comment.createdTime | formatTime }}</p>
             </div>
           </li>
         </ul>
@@ -66,7 +67,9 @@ export default {
   },
   filters: {
     formatTime: function (time) {
-      return moment(time).format('YYYY-MM-DD');
+      let commentTime = moment(time);
+      let formatDate = commentTime.year() === moment(Date.now()).year() ? 'MM月DD日' : 'YYYY年MM月DD日';
+      return commentTime.format(formatDate);
     }
   },
   methods: {
@@ -134,21 +137,45 @@ export default {
       height: 3em;
       border-radius: 100%;
       border: 1px solid $base-color;
-      text-align: center;
       color: $base-color;
-      line-height: 3em;
       z-index: 1001;
       cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+      }
     }
-    textarea {
-      padding: 0.8em;
-      line-height: 1.5;
-      width: 100%;
-      resize: none;
-      border: 1px solid $base-color;
-      outline: none;
-      border-radius: 0.4em;
-      box-sizing: border-box;
+    .content-area {
+      position: relative;
+      .content-area-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(255,255,255,0.6);
+        z-index: 999;
+        .login-tips {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #999;
+          line-height: 1.6;
+        }
+      }
+      textarea {
+        padding: 0.8em;
+        line-height: 1.5;
+        width: 100%;
+        resize: none;
+        border: 1px solid $base-color;
+        outline: none;
+        border-radius: 0.4em;
+        box-sizing: border-box;
+      }
     }
     .comment-action {
       margin-top: 0.4em;
@@ -186,17 +213,15 @@ export default {
     }
     .comment-list-item {
       position: relative;
-      margin-top: 1em;
-      padding: 0 0 1em 4em;
-      border-bottom: 1px dashed #ccc;
+      padding: 1.2em 1.25em 1.2em 5.4em;
+      border-bottom: 1px solid #e7e7eb;
 
       .user-avater {
         position: absolute;
-        top: 0;
+        top: 1.2em;
         left: 0;
-        width: 3em;
-        height: 3em;
-        border-radius: 100%;
+        width: 4em;
+        height: 4em;
 
         img {
           width: 100%;
@@ -204,28 +229,23 @@ export default {
         }
       }
       .comment-item-info {
-        .comment-info-time {
-          font-size: 1em;
-          color: #666;
-          line-height: 1.5;
-          .comment-time {
-            color: #999;
-          }
+        .user-name {
+          font-size: 1.2em;
+          font-weight: 400;
+          color: #9a9a9a;
+          line-height: 1.2;
+          margin-bottom: 0.4em;
         }
+        .comment-time {
+          margin-top: 0.5em;
+          font-size: 1em;
+          color: #9a9a9a;
+        }
+        
         .comment-item-content {
-          margin-top: 1em;
+          padding: 0.5em 0;
           line-height: 1.5;
-          cursor: pointer;
-
-          span {
-            margin-left: 1em;
-            display: none;
-          }
-          &:hover {
-            span {
-              display: inline-block;
-            }
-          }
+          color: #353535;
         }
       }
     }
