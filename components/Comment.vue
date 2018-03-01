@@ -4,17 +4,17 @@
       <div class="curve"></div>
       <div class="login-mask">
         <div class="login">
-          <!-- <img src="" alt="默认头像"> -->
-          <svg aria-hidden="true" @click="githubLogin" class="octicon octicon-mark-github" height="42" version="1.1" viewBox="0 0 16 16" width="42">
+          <img :src="guestAvatar" alt="用户头像" v-if="guestAvatar !== ''">
+          <svg aria-hidden="true" v-else @click="githubLogin" class="octicon octicon-mark-github" height="42" version="1.1" viewBox="0 0 16 16" width="42">
             <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
           </svg>
         </div>
       </div>
       <div class="content-area">
-        <div class="content-area-mask">
+        <div class="content-area-mask" v-if="!isLogin">
           <p class="login-tips">暂无评论权限，请使用GitHub账号登陆后发表评论。</p>
         </div>
-        <textarea rows="6" v-model="newComment.content"></textarea>
+        <textarea rows="6" v-model="newComment.content" ref="newComment"></textarea>
       </div>
       <div class="comment-action">
         <button class="btn-comment" @click="addNewComment">评论一下</button>
@@ -65,6 +65,8 @@ export default {
         userId: 0,
         content: ''
       },
+      guestAvatar: '',
+      isLogin: false,
       comments: []
     };
   },
@@ -97,11 +99,22 @@ export default {
         });
     },
     githubLogin: function () {
-      window.location.href = 'https://github.com/login/oauth/authorize?client_id=&redirect_uri=http://localhost:9000/blogapi/oauth/github/github_oauth_cb&scope=user:email';
-      window.localStorage.setItem('github_login_redirect_uri', `${this.$route.path}?comment=new`);
+      window.location.href = 'https://github.com/login/oauth/authorize?client_id=&redirect_uri=http://localhost:3000/login&scope=user:email';
+      window.localStorage.setItem('GITHUB_LOGIN_REDIRECT_URL', `${this.$route.path}?comment=new`);
     }
   },
   mounted () {
+    if (this.$route.query.comment && this.$route.query.comment === 'new') {
+      window.localStorage.removeItem('GITHUB_LOGIN_REDIRECT_URL');
+      let guest = JSON.parse(window.localStorage.getItem('GITHUB_LOGIN_GUEST'));
+      this.guestAvatar = guest.avatar;
+      this.isLogin = true;
+
+      setTimeout(() => {
+        this.$refs.newComment.scrollIntoView();
+        this.$refs.newComment.focus();
+      }, 500);
+    }
     if (this.postId) {
       this.getCommentsByPostId();
     }
