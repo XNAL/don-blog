@@ -45,6 +45,7 @@
 
 <script>
 import axios from 'axios';
+import qs from 'qs';
 import moment from 'moment';
 
 export default {
@@ -53,18 +54,12 @@ export default {
   },
   data () {
     return {
-      author: {
-        id: 0,
-        name: '',
-        avatar: ''
-      },
       newComment: {
-        id: 0,
         postId: 0,
         replyId: 0,
-        userId: 0,
         content: ''
       },
+      guestName: '',
       guestAvatar: '',
       isLogin: false,
       comments: []
@@ -91,31 +86,51 @@ export default {
         alert('评论内容不能为空！');
         return;
       }
-      axios.post(`/post/addComment`, this.newComment)
+      let token = localStorage.getItem('GITHUB_LOGIN_TOKEN');
+      axios.post('/post/addComment', qs.stringify({
+        comment: this.newComment,
+        token: 'Bearer ' + token
+      }))
         .then(res => {
           if (res.data.success === 1) {
+            this.newComment.avatar = this.guestAvatar;
             this.newComment.id = res.data.id;
+            this.comments.unshift(Object.assign({}, this.newComment, {
+              id: res.data.id,
+              userName: this.guestName,
+              avatar: this.guestAvatar
+            }));
+            this.newComment = Object.assign(this.newComment, {
+              id: 0,
+              content: '',
+              replyId: 0
+            });
           }
         });
     },
     githubLogin: function () {
-      window.location.href = 'https://github.com/login/oauth/authorize?client_id=&redirect_uri=http://localhost:3000/login&scope=user:email';
+      window.location.href = 'https://github.com/login/oauth/authorize?client_id=6625cb27769b1bc52415&redirect_uri=http://localhost:3000/login&scope=user:email';
       window.localStorage.setItem('GITHUB_LOGIN_REDIRECT_URL', `${this.$route.path}?comment=new`);
     }
   },
   mounted () {
     if (this.$route.query.comment && this.$route.query.comment === 'new') {
       window.localStorage.removeItem('GITHUB_LOGIN_REDIRECT_URL');
-      let guest = JSON.parse(window.localStorage.getItem('GITHUB_LOGIN_GUEST'));
-      this.guestAvatar = guest.avatar;
-      this.isLogin = true;
 
       setTimeout(() => {
         this.$refs.newComment.scrollIntoView();
         this.$refs.newComment.focus();
       }, 500);
     }
+    let token = window.localStorage.getItem('GITHUB_LOGIN_TOKEN');
+    let guest = JSON.parse(window.localStorage.getItem('GITHUB_LOGIN_GUEST'));
+    if (token && guest) {
+      this.guestAvatar = guest.avatar;
+      this.guestName = guest.userName;
+      this.isLogin = true;
+    }
     if (this.postId) {
+      this.newComment.postId = this.postId;
       this.getCommentsByPostId();
     }
   }
