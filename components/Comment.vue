@@ -40,6 +40,7 @@
         </ul>
       </div>
     </section>
+    <db-dialog v-show="showDialog" :dialog-option="dialogOption" ref="dialog"></db-dialog>
   </section>
 </template>
 
@@ -47,10 +48,14 @@
 import axios from 'axios';
 import qs from 'qs';
 import moment from 'moment';
+import dbDialog from './Dialog';
 
 export default {
   props: {
     postId: String
+  },
+  components: {
+    dbDialog
   },
   data () {
     return {
@@ -62,7 +67,14 @@ export default {
       guestName: '',
       guestAvatar: '',
       isLogin: false,
-      comments: []
+      comments: [],
+      showDialog: false,
+      dialogOption: {
+        title: '提示',
+        text: '',
+        cancelButtonText: '',
+        confirmButtonText: '确定'
+      }
     };
   },
   filters: {
@@ -104,6 +116,19 @@ export default {
               id: 0,
               content: '',
               replyId: 0
+            });
+          } else if (res.data.success === -1) {
+            this.dialogOption.text = '当前用户登录信息已过期，请重新登录！';
+            this.showDialog = true;
+            this.$refs.dialog.confirm().then(() => {
+              this.showDialog = false;
+              window.localStorage.removeItem('GITHUB_LOGIN_TOKEN');
+              window.localStorage.removeItem('GITHUB_LOGIN_GUEST');
+              this.isLogin = false;
+              this.guestAvatar = '';
+              this.guestName = '';
+            }).catch(() => {
+              this.showDialog = false;
             });
           }
         });
