@@ -1,6 +1,6 @@
 <template>
   <section class="comment-section">
-    <section class="comment-box">
+    <section class="comment-box" ref="commentBox">
       <div class="curve"></div>
       <div class="login-mask">
         <div class="login">
@@ -17,7 +17,7 @@
         <textarea rows="6" v-model="newComment.content" ref="newComment"></textarea>
       </div>
       <div class="comment-action">
-        <button class="btn-comment" @click="addNewComment">评论一下</button>
+        <button class="btn-comment" @click="addNewComment" v-if="isLogin">评论一下</button>
       </div>
     </section>
     <section class="comment-list-section">
@@ -25,7 +25,7 @@
       <div class="comment-list-area" v-else>
         <div class="comment-list-title">最新评论</div>
         <ul class="comment-list">
-          <li class="comment-list-item" v-for="comment in comments" :key="comment.id">
+          <li class="comment-list-item" v-for="(comment, index) in comments" :key="comment.id">
             <div class="user-avater">
               <img :src="comment.avatar" alt="头像">
             </div>
@@ -36,6 +36,7 @@
               </div>
               <p class="comment-time">{{ comment.createdTime | formatTime }}</p>
             </div>
+            <span class="floor">{{ index + 1 }}楼</span>
           </li>
         </ul>
       </div>
@@ -143,7 +144,10 @@ export default {
       window.localStorage.removeItem('GITHUB_LOGIN_REDIRECT_URL');
 
       setTimeout(() => {
-        this.$refs.newComment.scrollIntoView();
+        this.$refs.commentBox.scrollIntoView();
+        let curHeight = document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop = curHeight - 60;
+        document.body.scrollTop = curHeight - 60;
         this.$refs.newComment.focus();
       }, 500);
     }
@@ -178,7 +182,7 @@ export default {
       border-radius: 100%;
       border: 1px solid $base-color;
       background: #fff;
-      z-index: 999;
+      z-index: 99;
     }
     .login-mask {
       position: absolute;
@@ -187,7 +191,7 @@ export default {
       width: 10em;
       height: 3.5em;
       background: #fff;
-      z-index: 1000;
+      z-index: 100;
     }
     .login {
       position: absolute;
@@ -198,7 +202,7 @@ export default {
       border-radius: 100%;
       border: 1px solid $base-color;
       color: $base-color;
-      z-index: 1001;
+      z-index: 101;
       cursor: pointer;
 
       img {
@@ -307,6 +311,12 @@ export default {
           line-height: 1.5;
           color: #353535;
         }
+      }
+      .floor {
+        position: absolute;
+        top: 1.2em;
+        right: 0;
+        color: #9a9a9a;
       }
     }
   }
