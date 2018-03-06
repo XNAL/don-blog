@@ -14,7 +14,7 @@
         <div class="content-area-mask" v-if="!isLogin">
           <p class="login-tips">暂无评论权限，请使用GitHub账号登陆后发表评论。</p>
         </div>
-        <textarea rows="6" v-model="newComment.content" ref="newComment"></textarea>
+        <textarea rows="6" v-model="newComment.content" ref="newComment" :placeholder="commentPlaceHolder"></textarea>
       </div>
       <div class="comment-action">
         <button class="btn-comment" @click="addNewComment" v-if="isLogin">评论一下</button>
@@ -27,10 +27,14 @@
         <ul class="comment-list">
           <li class="comment-list-item" v-for="(comment, index) in comments" :key="comment.id">
             <div class="user-avater">
-              <img :src="comment.avatar" alt="头像">
+              <img class="reply-comment" :src="comment.avatar" alt="头像" @click="replyComment(comment)">
             </div>
             <div class="comment-item-info">
-              <p class="user-name">{{ comment.userName }}</p>
+              <p class="user-name reply-comment" @click="replyComment(comment)">
+                <span>{{ comment.userName }}</span> 
+                {{ comment.replyUserName ? '回复' : '' }}
+                <span>{{ comment.replyUserName }}</span>
+              </p>
               <div class="comment-item-content">
                 {{ comment.content }}
               </div>
@@ -65,6 +69,8 @@ export default {
         replyId: 0,
         content: ''
       },
+      commentPlaceHolder: '评论一下吧',
+      replyUserName: '',
       guestName: '',
       guestAvatar: '',
       isLogin: false,
@@ -86,6 +92,7 @@ export default {
     }
   },
   methods: {
+    // 获取文章对应的评论列表
     getCommentsByPostId: function () {
       axios.get(`/post/getCommentsByPostId/${this.postId}`)
         .then(res => {
@@ -94,6 +101,7 @@ export default {
           }
         });
     },
+    // 添加评论
     addNewComment: function () {
       if (this.newComment.content === '') {
         alert('评论内容不能为空！');
@@ -111,13 +119,16 @@ export default {
             this.comments.unshift(Object.assign({}, this.newComment, {
               id: res.data.id,
               userName: this.guestName,
-              avatar: this.guestAvatar
+              avatar: this.guestAvatar,
+              replyUserName: this.replyUserName
             }));
             this.newComment = Object.assign(this.newComment, {
               id: 0,
               content: '',
               replyId: 0
             });
+            this.replyUserName = '';
+            this.commentPlaceHolder = '评论一下吧';
           } else if (res.data.success === -1) {
             this.dialogOption.text = '当前用户登录信息已过期，请重新登录！';
             this.showDialog = true;
@@ -134,12 +145,27 @@ export default {
           }
         });
     },
+    // github授权登录
     githubLogin: function () {
       window.location.href = 'https://github.com/login/oauth/authorize?client_id=6625cb27769b1bc52415&redirect_uri=http://localhost:3000/login&scope=user:email';
       window.localStorage.setItem('GITHUB_LOGIN_REDIRECT_URL', `${this.$route.path}?comment=new`);
+    },
+    // 回复评论
+    replyComment: function (comment) {
+      this.newComment.replyId = comment.id;
+      this.replyUserName = comment.userName;
+      this.commentPlaceHolder = `回复@${comment.userName}:`;
+      setTimeout(() => {
+        this.$refs.commentBox.scrollIntoView();
+        let curHeight = document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop = curHeight - 60;
+        document.body.scrollTop = curHeight - 60;
+        this.$refs.newComment.focus();
+      }, 500);
     }
   },
   mounted () {
+    // 登陆后跳转回当前页面
     if (this.$route.query.comment && this.$route.query.comment === 'new') {
       window.localStorage.removeItem('GITHUB_LOGIN_REDIRECT_URL');
 
@@ -151,8 +177,10 @@ export default {
         this.$refs.newComment.focus();
       }, 500);
     }
+    // 获取token和用户信息
     let token = window.localStorage.getItem('GITHUB_LOGIN_TOKEN');
-    let guest = JSON.parse(window.localStorage.getItem('GITHUB_LOGIN_GUEST'));
+    let guestStr = window.localStorage.getItem('GITHUB_LOGIN_GUEST');
+    let guest = guestStr !== '' ? JSON.parse(guestStr) : null;
     if (token && guest) {
       this.guestAvatar = guest.avatar;
       this.guestName = guest.userName;
@@ -239,6 +267,11 @@ export default {
         outline: none;
         border-radius: 0.4em;
         box-sizing: border-box;
+
+        &::placeholder {
+          color: #bcbcbc;
+          font-size: 1em;
+        }
       }
     }
     .comment-action {
@@ -317,6 +350,9 @@ export default {
         top: 1.2em;
         right: 0;
         color: #9a9a9a;
+      }
+      .reply-comment {
+        cursor: pointer;
       }
     }
   }
