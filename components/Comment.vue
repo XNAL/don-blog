@@ -27,20 +27,25 @@
         <ul class="comment-list">
           <li class="comment-list-item" v-for="(comment, index) in comments" :key="comment.id">
             <div class="user-avater">
-              <img class="reply-comment" :src="comment.avatar" alt="头像" @click="replyComment(comment)">
+              <img class="reply-comment" :src="comment.avatar" alt="头像" @click="handleReplyComment(comment)">
             </div>
             <div class="comment-item-info">
-              <p class="user-name reply-comment" @click="replyComment(comment)">
-                <span>{{ comment.userName }}</span> 
-                {{ comment.replyUserName ? '回复' : '' }}
-                <span>{{ comment.replyUserName }}</span>
+              <p class="user-name reply-comment" @click="handleReplyComment(comment)">
+                {{ comment.userName }}
               </p>
               <div class="comment-item-content">
                 {{ comment.content }}
+
+                <div class="comment-item-reply" v-if="comment.replyId">
+                  <p class="comment-item-reply-user">{{ comment.replyUserName }}</p>
+                  <div class="comment-item-reply-content">{{ comment.replyContent }}</div>
+                  <div class="comment-item-reply-time">{{ comment.replyTime  | formatTime }}</div>
+                  <span class="floor">{{ comment.replyNumber }}楼</span>
+                </div>
               </div>
               <p class="comment-time">{{ comment.createdTime | formatTime }}</p>
             </div>
-            <span class="floor">{{ index + 1 }}楼</span>
+            <span class="floor">{{ comment.number }}楼</span>
           </li>
         </ul>
       </div>
@@ -69,8 +74,12 @@ export default {
         replyId: 0,
         content: ''
       },
+      replyComment: {
+        replyUserName: '',
+        replyContent: '',
+        replyNumber: 0
+      },
       commentPlaceHolder: '评论一下吧',
-      replyUserName: '',
       guestName: '',
       guestAvatar: '',
       isLogin: false,
@@ -116,18 +125,22 @@ export default {
           if (res.data.success === 1) {
             this.newComment.avatar = this.guestAvatar;
             this.newComment.id = res.data.id;
-            this.comments.unshift(Object.assign({}, this.newComment, {
+            this.comments.unshift(Object.assign({}, this.newComment, this.replyComment, {
               id: res.data.id,
               userName: this.guestName,
               avatar: this.guestAvatar,
-              replyUserName: this.replyUserName
+              number: res.data.number
             }));
             this.newComment = Object.assign(this.newComment, {
               id: 0,
               content: '',
               replyId: 0
             });
-            this.replyUserName = '';
+            this.replyComment = Object.assign({}, {
+              replyUserName: '',
+              replyContent: '',
+              replyNumber: 0
+            });
             this.commentPlaceHolder = '评论一下吧';
           } else if (res.data.success === -1) {
             this.dialogOption.text = '当前用户登录信息已过期，请重新登录！';
@@ -151,10 +164,12 @@ export default {
       window.localStorage.setItem('GITHUB_LOGIN_REDIRECT_URL', `${this.$route.path}?comment=new`);
     },
     // 回复评论
-    replyComment: function (comment) {
+    handleReplyComment: function (comment) {
       this.newComment.replyId = comment.id;
-      this.replyUserName = comment.userName;
-      this.commentPlaceHolder = `回复@${comment.userName}:`;
+      this.replyComment.replyUserName = comment.userName;
+      this.replyComment.replyContent = comment.content;
+      this.replyComment.replyNumber = comment.number;
+      this.commentPlaceHolder = `回复${comment.number}楼@${comment.userName}:`;
       setTimeout(() => {
         this.$refs.commentBox.scrollIntoView();
         let curHeight = document.documentElement.scrollTop || document.body.scrollTop;
@@ -323,6 +338,35 @@ export default {
         img {
           width: 100%;
           height: 100%;
+        }
+      }
+      .comment-item-reply {
+        position: relative;
+        margin: 1em 0 1em 1em;
+        padding: 1em;
+        border: 1px dashed $base-color;
+        border-radius: 0.6em;
+        .comment-item-reply-user {
+          font-size: 1.2em;
+          font-weight: 400;
+          color: #9a9a9a;
+          line-height: 1.2;
+          margin-bottom: 0.4em;
+        }
+        .comment-item-reply-time {
+          margin-top: 0.5em;
+          font-size: 1em;
+          color: #9a9a9a;
+        }
+        
+        .comment-item-reply-content {
+          padding: 0.5em 0;
+          line-height: 1.5;
+          color: #353535;
+        }
+        .floor {
+          top: 1em;
+          right: 1em;
         }
       }
       .comment-item-info {
