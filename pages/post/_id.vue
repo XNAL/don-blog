@@ -152,14 +152,35 @@ export default {
     p {
       width: 50%;
       margin: 1.5em auto;
+      a {
+        position: relative;
+        display: inline-block;
+        line-height: 1.5;
+
+        .icon {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
     }
     .prev {
-      .icon {
-        transform: rotate(180deg);
+      a {
+        padding: 0 0.2em 0 1.5em;
+        .icon {
+          transform: translateY(-50%) rotate(180deg);
+          left: 0;
+        }
       }
     }
     .next {
       text-align: right;
+      a {
+        padding: 0 1.5em 0 0.2em;
+        .icon {
+          right: 0;
+        }
+      }
     }
     
     .icon {
