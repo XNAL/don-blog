@@ -14,13 +14,13 @@
         <span class="desc">STAY CURIOUS. STAY HUMBLE.</span>
         <div class="search fr">
           <input type="text" :class="{ 'show': showInput }" 
-                v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
+                v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search..." maxlength="20">
           <svg class="icon" aria-hidden="true" @click="clickSearch">
             <use xlink:href="#icon-search"></use>
           </svg>
         </div>
         <div :class="['small-screen-search', { 'show': showInput }]">
-          <input type="text" v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search...">
+          <input type="text" v-model.trim="keyword" @keyup.enter="searchKeyWord" placeholder="search..." maxlength="20">
           <svg class="icon" aria-hidden="true" @click="hideSearch">
             <use xlink:href="#icon-delete"></use>
           </svg>
