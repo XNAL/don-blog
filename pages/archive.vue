@@ -41,6 +41,7 @@
 <script>
 import axios from 'axios';
 import TimeLine from '~/components/TimeLine';
+import qs from 'qs';
 export default {
   head () {
     return {
@@ -62,6 +63,11 @@ export default {
   },
   components: {
     TimeLine
+  },
+  created () {
+    axios.post('/track/addEventTrack', qs.stringify({
+      key: 'VIEW_ARCHIVE'
+    }));
   }
 };
 </script>

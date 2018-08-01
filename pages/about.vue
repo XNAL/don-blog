@@ -36,11 +36,18 @@
 </template>
 
 <script>
+import axios from 'axios';
+import qs from 'qs';
 export default {
   head () {
     return {
       title: '关于 - Powered by Don'
     };
+  },
+  created () {
+    axios.post('/track/addEventTrack', qs.stringify({
+      key: 'VIEW_ABOUT'
+    }));
   }
 };
 </script>

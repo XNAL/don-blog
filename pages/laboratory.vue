@@ -18,6 +18,7 @@
 <script>
 import axios from 'axios';
 import Project from '~/components/Project.vue';
+import qs from 'qs';
 
 export default {
   head () {
@@ -38,6 +39,11 @@ export default {
   },
   components: {
     'project-list': Project
+  },
+  created () {
+    axios.post('/track/addEventTrack', qs.stringify({
+      key: 'VIEW_LABORATORY'
+    }));
   }
 };
 </script>

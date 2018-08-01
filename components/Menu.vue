@@ -20,17 +20,17 @@
         <use xlink:href="#icon-about"></use>
       </svg>ABOUT
     </nuxt-link>
-    <a href="https://github.com/XNAL" target="_blank" class="no-underline">
+    <a href="https://github.com/XNAL" target="_blank" class="no-underline" @click="goToOtherWebsite('GITHUB')">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-github"></use>
       </svg>GITHUB
     </a>
-    <a href="https://segmentfault.com/u/tdon" target="_blank" class="no-underline">
+    <a href="https://segmentfault.com/u/tdon" target="_blank" class="no-underline" @click="goToOtherWebsite('SEGMENTFAULT')">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-sf"></use>
       </svg>SEGMENTFAULT
     </a>
-    <a href="https://juejin.im/user/59b9f345f265da066464180c" target="_blank" class="no-underline juejin">
+    <a href="https://juejin.im/user/59b9f345f265da066464180c" target="_blank" class="no-underline juejin" @click="goToOtherWebsite('JUEJIN')">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-juejin"></use>
       </svg>JUEJIN
@@ -39,7 +39,17 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+import qs from 'qs';
+export default {
+  methods: {
+    goToOtherWebsite (type) {
+      axios.post('/track/addEventTrack', qs.stringify({
+        key: `GO_TO_${type}`
+      }));
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

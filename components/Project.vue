@@ -7,7 +7,7 @@
         `${(position === 'right' ? 'right' : 'left') === 'left' ? 'right' : 'left'}`]">
       <h3 class="name">{{ project.name }}</h3>
       <p class="description">{{ project.description }}</p>
-      <p class="link-address" v-if="project.link !== ''">
+      <p class="link-address" v-if="project.link !== ''" @click="viewProject('ONLINE')">
         <a :href="project.link" class="link" target="_blank">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-web"></use>
@@ -15,7 +15,7 @@
         </a>
       </p>
       <p class="link-address" v-if="project.github">
-        <a :href="project.github" class="github" target="_blank">
+        <a :href="project.github" class="github" target="_blank" @click="viewProject('GITHUB')">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github"></use>
           </svg>GitHub查看
@@ -26,10 +26,21 @@
 </template>
 
 <script>
+import axios from 'axios';
+import qs from 'qs';
+
 export default {
   props: {
     project: Object,
     position: String
+  },
+  methods: {
+    viewProject (type) {
+      axios.post('/track/addEventTrack', qs.stringify({
+        key: `VIEW_PROJECT_${type}`,
+        id: this.project.id
+      }));
+    }
   }
 };
 </script>

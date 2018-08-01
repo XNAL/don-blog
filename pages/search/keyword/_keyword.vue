@@ -14,6 +14,7 @@
 import axios from 'axios';
 import Post from '~/components/Post.vue';
 import LoadMore from '~/components/LoadMore.vue';
+import qs from 'qs';
 
 export default {
   head () {
@@ -71,6 +72,12 @@ export default {
         });
       }
     }
+  },
+  created () {
+    axios.post('/track/addEventTrack', qs.stringify({
+      key: 'VIEW_POST_BY_KEYWORD',
+      keyword: this.keyword
+    }));
   }
 };
 </script>

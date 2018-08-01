@@ -47,6 +47,7 @@ import axios from 'axios';
 import moment from 'moment';
 import marked from 'marked';
 import Comment from '~/components/Comment';
+import qs from 'qs';
 
 export default {
   components: {
@@ -92,6 +93,11 @@ export default {
       }
     });
     this.markdownContent = marked(this.post.content, { sanitize: true });
+
+    axios.post('/track/addEventTrack', qs.stringify({
+      key: 'VIEW_POST',
+      id: this.postId
+    }));
   },
   filters: {
     formatTime (time) {
