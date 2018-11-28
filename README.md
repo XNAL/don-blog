@@ -4,15 +4,11 @@
 
 
 
-目前前台博客页面已基本开发完成（评论功能待开发，在考虑方案中），[后台管理页面](https://github.com/XNAL/don-blog-backManage)也基本开发完成（首页统计图表和一些优化待开发，暂时需要统计的数据还不多，也在考虑统计维度中）。
+目前前台博客页面已基本开发完成，[后台管理页面](https://github.com/XNAL/don-blog-backManage)也基本开发完成（首页统计图表和一些优化待开发，暂时需要统计的数据还不多，也在考虑统计维度中）。
 
 ## 技术栈
 
 Vue.js + Nuxt.js  + SCSS + ES6/7 + Node.js + Koa.js + mySql + Redis
-
-## 源码
-
-[Talk is cheap. Show me the code.](https://github.com/XNAL/don-blog)
 
 ## 访问地址
 
