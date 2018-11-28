@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: "Powered by Don",
+    title: 'Powered by Don',
     meta: [
       { charset: 'utf-8' },
       { name: 'author', content: 'wwwtdonsite@gmail.com' },
@@ -12,12 +12,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: '基于Vue.js和Node.js开发的前端博客' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [{ src: 'http://at.alicdn.com/t/font_461741_4nduxuexsi3sor.js' }]
+    script: [{ src: 'http://at.alicdn.com/t/font_461741_hvf5e66iab6.js' }]
   },
   // Global CSS
   css: [
     { src: '~assets/sass/app.scss', lang: 'sass' },
-    { src: 'highlight.js/styles/atelier-cave-light.css' } 
+    { src: 'highlight.js/styles/atelier-cave-light.css' }
   ],
   /*
   ** Customize the progress bar color

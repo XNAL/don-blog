@@ -30,11 +30,11 @@
         <use xlink:href="#icon-sf"></use>
       </svg>SEGMENTFAULT
     </a>
-    <a href="https://juejin.im/user/59b9f345f265da066464180c" target="_blank" class="no-underline juejin" @click="goToOtherWebsite('JUEJIN')">
+    <!-- <a href="https://juejin.im/user/59b9f345f265da066464180c" target="_blank" class="no-underline juejin" @click="goToOtherWebsite('JUEJIN')">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-juejin"></use>
       </svg>JUEJIN
-    </a>
+    </a> -->
   </nav>
 </template>
 

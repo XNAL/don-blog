@@ -15,17 +15,8 @@
     <p class="indent-2 small-screen-indent">😆 服务端代码:<a href="https://github.com/XNAL/don-blog-backManage" target="_blank">Show me the code.</a>😆</p>
     <p class="indent-1 small-screen-indent">😎 自己开发博客的好处是可以随意捣鼓，按照自己的想法去实现。当然也会存在一些不足😎</p>
     <p class="small-screen-indent">😙 如果有什么好的建议和意见，欢迎和我联系！😙</p>
-    <div class="contact">      
-      <span class="qrcode wx">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-weixin"></use>
-        </svg>
-      </span>
-      <span class="qrcode qq">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-qq"></use>
-        </svg>
-      </span>
+    <div class="contact">
+      <img class="qrcode" src="/wechat.png" alt="微信二维码" srcset="">
       <a href="mailto:wwwtdonsite@gmail.com" class="no-underline" title="wwwtdonsite@gmail.com">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-email"></use>
@@ -96,43 +87,19 @@ export default {
     text-indent: 8em;
   }
   .contact {
-    margin-top: 4em;
+    margin-top: 2em;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
+    align-items: center;
 
     .icon {
-      width: 5em;
-      height: 5em;
+      width: 8em;
+      height: 8em;
     }
     .qrcode {
-      position: relative;
-      cursor: pointer;
-      &::after {
-        content:'';
-        position: absolute;
-        width: 20em;
-        height: 20em;
-        bottom: 5.5em;
-        background-size: 100% 100%;
-        transition: all 0.5s;
-        opacity: 0;
-        z-index: -1;
-      }
-      &:hover {
-        &::after {
-          opacity: 1;
-          z-index: 1;
-        }
-      }
-    }
-    .wx::after {   
-      left: -7.5em;
-      background-image: url(/weixin.png);
-    }
-    .qq::after {
-      left: -8em;
-      background-image: url(/qq.png);
+      width: 10em;
+      height: 14em;
     }
   }
 }

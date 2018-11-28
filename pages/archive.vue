@@ -16,23 +16,32 @@
       </div>
     </div>
     <div class="archive-com-sec archive-tag">
-      <p class="sort-title">
+      <dvi class="sort-title">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-tag"></use>
         </svg>标签
-      </p>    
+        <p class="show-more" @click="showAndHideAllTags" v-if="tags.length > 5">
+          <span v-if="showAllTags">收起</span>
+          <span v-else>展开</span>
+          <svg :class="['icon', {'hide': showAllTags}]" aria-hidden="true">
+            <use xlink:href="#icon-arrow"></use>
+          </svg>
+        </p>
+      </dvi>
       <div class="sort-items">
-        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="tag in tags" :key="tag.id" v-if="tag.count > 0">{{ tag.name }} ({{ tag.count }})</nuxt-link>
-      </div>  
+        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="(tag, index) in tags" :key="tag.id" v-if="tag.count > 0 && (index < 5 || showAllTags)">
+          {{ tag.name }} ({{ tag.count }})
+        </nuxt-link>
+      </div>
     </div>
     <div class="archive-com-sec archive-time">
       <p class="sort-title">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-time"></use>
         </svg>时间
-      </p>  
+      </p>
       <div class="sort-items">
-        <time-line v-for="(time, index) in timePosts" :key="index" :time-post="time"></time-line>    
+        <time-line v-for="(time, index) in timePosts" :key="index" :time-post="time"></time-line>
       </div>
     </div>
   </section>
@@ -48,12 +57,21 @@ export default {
       title: '归档 - Powered by Don'
     };
   },
+  data () {
+    return {
+      showAllTags: false
+    };
+  },
   asyncData () {
     return axios.get(`/post/getArchive`).then(res => {
       if (res.data.success === 1) {
+        let tags = res.data.tags;
+        tags = tags.sort((a, b) => {
+          return b.count - a.count;
+        });
         return {
           categories: res.data.categories,
-          tags: res.data.tags,
+          tags,
           timePosts: res.data.times
         };
       } else {
@@ -68,6 +86,11 @@ export default {
     axios.post('/track/addEventTrack', qs.stringify({
       key: 'VIEW_ARCHIVE'
     }));
+  },
+  methods: {
+    showAndHideAllTags () {
+      this.showAllTags = !this.showAllTags;
+    }
   }
 };
 </script>
@@ -101,18 +124,50 @@ export default {
     }
   }
   .sort-title {
+    position: relative;
     font-size: 1.5em;
     padding: 0.5em 0 0.5em 1em;
     box-sizing: border-box;
     border-left: 0.15em solid $base-color;
+    display: block;
     .icon {
       width: 0.9em;
       height: 0.9em;
       vertical-align: -0.1em;
       margin-right: 0.2em;
     }
+    .show-more {
+      position: absolute;
+      right: .8em;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1.5em;
+      font-size: 0.8em;
+      color: $base-color;
+      background: rgba(27,31,35,.05);
+      border-radius: .2em;
+      padding: 0 0 0 .8em;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      span {
+        font-size: 0.8em;
+      }
+      .icon {
+        margin-left: .8em;
+        width: 1em;
+        height: 1em;
+        transform: translateX(-50%) rotate(90deg);
+        transition: transform .2s linear;
+
+        &.hide {
+          transform: translateX(-50%) rotate(-90deg);
+        }
+      }
+    }
   }
   .sort-items {
+    position: relative;
     padding: 0.5em 1em;
     font-size: 1.2em;
     a {
