@@ -20,7 +20,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-tag"></use>
         </svg>标签
-        <p class="show-more" @click="showAndHideAllTags" v-if="tags.length > 5">
+        <p class="show-more" @click="showAndHideAllTags" v-if="tags.length > 10">
           <span v-if="showAllTags">收起</span>
           <span v-else>展开</span>
           <svg :class="['icon', {'hide': showAllTags}]" aria-hidden="true">
@@ -29,7 +29,8 @@
         </p>
       </dvi>
       <div class="sort-items">
-        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="(tag, index) in tags" :key="tag.id" v-if="tag.count > 0 && (index < 5 || showAllTags)">
+        <nuxt-link :to="`/search/tag/${tag.id}`" v-for="(tag, index) in tags"
+          :key="tag.id" v-if="tag.count > 0 && (index < 10 || showAllTags)">
           {{ tag.name }} ({{ tag.count }})
         </nuxt-link>
       </div>
